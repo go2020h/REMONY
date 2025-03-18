@@ -1436,3 +1436,116 @@ body {
         padding: 0 15px;
     }
 }
+
+/* u304au554fu3044u5408u308fu305bu78bau8a8du753bu9762 */
+.confirm-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+}
+
+.confirm-box {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.confirm-content {
+    margin-top: 30px;
+}
+
+.confirm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.confirm-table th,
+.confirm-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--gray);
+    text-align: left;
+}
+
+.confirm-table th {
+    width: 30%;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: var(--light-gray);
+}
+
+.button-area {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.button-back,
+.button-submit {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.button-back {
+    background-color: var(--dark-gray);
+    color: var(--text-color);
+}
+
+.button-submit {
+    background-color: var(--remony-color);
+    color: var(--white);
+}
+
+.button-back:hover {
+    background-color: #cccccc;
+}
+
+.button-submit:hover {
+    background-color: #163b17;
+}
+
+@media (max-width: 768px) {
+    .confirm-section {
+        padding: 50px 20px;
+    }
+    
+    .confirm-box {
+        padding: 30px 20px;
+    }
+    
+    .confirm-table th,
+    .confirm-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .confirm-table th {
+        border-bottom: none;
+        padding-bottom: 5px;
+    }
+    
+    .confirm-table td {
+        padding-top: 5px;
+    }
+    
+    .button-area {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .button-back,
+    .button-submit {
+        width: 100%;
+        text-align: center;
+    }
+}

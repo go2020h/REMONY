@@ -1,8 +1,14 @@
 <?php
-// エラーレポートを有効化
+// エラーを表示（開発時のみ）
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+// 確認画面からの送信でない場合はエラー
+if (!isset($_POST['confirmed']) || $_POST['confirmed'] != '1') {
+    header('Location: error.php');
+    exit;
+}
 
 // フォームからのデータを取得
 $name = isset($_POST['name']) ? $_POST['name'] : '';
@@ -15,16 +21,16 @@ $time_detail = isset($_POST['time_detail']) ? $_POST['time_detail'] : '';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 $message = isset($_POST['message']) ? $_POST['message'] : '';
 
-// 電話連絡可能時間の表示用テキスト
+// 連絡可能時間の表示用テキストを生成
 $time_text = ($time == 'anytime') ? 'いつでも可' : '時間指定: ' . $time_detail;
 
 // 送信先メールアドレス
-$to = 'tanikaga@nfes-tech.com';
+$to = 'katagiri@hidane.org';
 
 // メールの件名
 $subject = 'REMONY for you - お問い合わせがありました';
 
-// メール本文
+// メールの本文
 $body = <<<EOT
 REMONY for you サイトからお問い合わせがありました。
 
@@ -34,14 +40,14 @@ REMONY for you サイトからお問い合わせがありました。
 【フリガナ】
 {$kana}
 
-【住所】
+【ご住所】
 〒{$postal}
 {$address}
 
 【電話番号】
 {$tel}
 
-【電話連絡可能時間】
+【連絡可能時間】
 {$time_text}
 
 【メールアドレス】
@@ -52,21 +58,30 @@ REMONY for you サイトからお問い合わせがありました。
 
 EOT;
 
-// メールヘッダー
+// 追加のヘッダー
 $headers = "From: {$email}\r\n";
 $headers .= "Reply-To: {$email}\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
-// メール送信
-$mail_sent = mail($to, $subject, $body, $headers);
-
-// 送信結果に応じたリダイレクト
-if ($mail_sent) {
-    // 送信成功時
-    header('Location: thanks.php');
-    exit;
-} else {
-    // 送信失敗時
+// メール送信処理
+try {
+    // mb_send_mailを使用して文字化けを防止
+    mb_language('ja');
+    mb_internal_encoding('UTF-8');
+    
+    $success = mb_send_mail($to, $subject, $body, $headers);
+    
+    if ($success) {
+        // 送信成功時はサンクスページへリダイレクト
+        header('Location: thanks.php');
+        exit;
+    } else {
+        // 送信失敗時はエラーページへリダイレクト
+        header('Location: error.php');
+        exit;
+    }
+} catch (Exception $e) {
+    // 例外発生時はエラーページへリダイレクト
     header('Location: error.php');
     exit;
 }

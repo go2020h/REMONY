@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // u540cu610fu30c1u30a7u30c3u30afu30dcu30c3u30afu30b9u3068u9001u4fe1u30dcu30bfu30f3u306eu53c2u7167u3092u53d6u5f97
+    // 同意チェックボックスと送信ボタンの参照を取得
     const agreeCheckbox = document.getElementById('agree');
     const submitButton = document.querySelector('.button-submit');
 
-    // u30c1u30a7u30c3u30afu30dcu30c3u30afu30b9u304cu5b58u5728u3059u308bu5834u5408u306eu307fu51e6u7406u3092u5b9fu884c
+    // チェックボックスが存在する場合のみ処理を実行
     if (agreeCheckbox && submitButton) {
-        // u30c1u30a7u30c3u30afu30dcu30c3u30afu30b9u306eu72b6u614bu304cu5909u308fu3063u305fu3068u304du306eu51e6u7406
+        // チェックボックスの状態が変わったときの処理
         agreeCheckbox.addEventListener('change', function() {
-            // u30c1u30a7u30c3u30afu304cu5165u3063u3066u3044u308cu3070u30dcu30bfu30f3u3092u6709u52b9u5316u3001u305du3046u3067u306au3051u308cu3070u7121u52b9u5316
+            // チェックが入っていればボタンを有効化、そうでなければ無効化
             submitButton.disabled = !this.checked;
         });
     }
 
-    // u30a2u30cbu30e1u30fcu30b7u30e7u30f3u306eu8a2du5b9a
+    // アニメーションの設定
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     
-    // u30b9u30afu30edu30fcu30ebu6642u306eu51e6u7406
+    // スクロール時の処理
     function checkScroll() {
         const triggerBottom = window.innerHeight * 0.8;
         
@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // u521du671fu8868u793au6642u306bu4e00u5ea6u30c1u30a7u30c3u30af
+    // 初期表示時に一度チェック
     checkScroll();
     
-    // u30b9u30afu30edu30fcu30ebu6642u306bu30c1u30a7u30c3u30af
+    // スクロール時にチェック
     window.addEventListener('scroll', checkScroll);
 
-    // u30cau30d3u30b2u30fcu30b7u30e7u30f3u306eu30dbu30fcu30e0u30dcu30bfu30f3u3068u30edu30b4u306eu30afu30eau30c3u30afu6642u306eu51e6u7406
+    // ナビゲーションのホームボタンとロゴのクリック時の処理
     const homeLinks = document.querySelectorAll('nav.nav a[href="index.html"], h1.logo a');
     
     homeLinks.forEach(link => {
