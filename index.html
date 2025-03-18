@@ -14,9 +14,10 @@
     <header class="header">
         <nav class="nav">
             <div class="nav-logo">
-                <a href="/">REMONY for you</a>
+                <a href="#top">REMONY for you</a>
             </div>
             <ul class="nav-list">
+                <li><a href="#top">トップ</a></li>
                 <li><a href="#about">REMONYとは</a></li>
                 <li><a href="#features">特徴</a></li>
                 <li><a href="#mechanism">仕組み</a></li>
@@ -27,7 +28,7 @@
     </header>
 
     <!-- ファーストビュー -->
-    <section class="hero">
+    <section class="hero" id="top">
         <div class="hero-content">
             <h1 class="hero-logo animate-on-scroll">REMONY for you</h1>
             <p class="hero-tagline animate-on-scroll">見守る、繋がる、安心感</p>
@@ -173,86 +174,96 @@
     </section>
 
     <!-- お問い合わせ -->
-    <section id="contact" class="section">
-        <div class="section-inner">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">CONTACT</h2>
-                <p class="section-subtitle">お問い合わせフォーム</p>
-            </div>
+    <section class="contact-section section" id="contact">
+        <div class="container">
+            <h2 class="section-title">お問い合わせ</h2>
+            <p class="section-description">ご質問やご相談がありましたら、お気軽にお問い合わせください。</p>
             
-            <div class="contact-container">
-                <div class="contact-web-box animate-on-scroll">
-                    <h3 class="contact-subtitle">WEBでのお問い合わせ</h3>
-                    <ul class="form-steps">
-                        <li class="active">入力</li>
-                        <li>確認</li>
-                        <li>完了</li>
-                    </ul>
+            <!-- フォームステップ -->
+            <ul class="form-steps">
+                <li id="step-input" class="active">入力</li>
+                <li id="step-confirm">確認</li>
+                <li id="step-complete">完了</li>
+            </ul>
+            
+            <!-- フォーム -->
+            <form class="contact-form" name="frmInq" method="post" action="javascript:void(0);" id="contactForm" onsubmit="return false;">
+                <!-- FormSubmitの設定 -->
+                <input type="hidden" name="_webhook" value="https://hook.us1.make.com/9976m5m72t6b6e1b5umnarwbus3dtjy9">
+                <input type="hidden" name="_subject" value="REMONYからのお問い合わせ">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <!-- 入力セクション -->
+                <div id="input-section" class="form-section">
+                    <div class="form-group">
+                        <label for="name">お名前<span class="required">*</span></label>
+                        <input type="text" name="name" id="name" placeholder="例）山田　太郎" required>
+                    </div>
                     
-                    <form class="contact-form" name="frmInq" method="post" action="/confirm" id="contactForm">
-                        <table class="form-table">
-                            <tbody>
-                                <tr class="required">
-                                    <th>お名前</th>
-                                    <td><input type="text" name="name" id="name" placeholder="例）山田　太郎" required></td>
-                                </tr>
-                                <tr class="required">
-                                    <th>フリガナ</th>
-                                    <td><input type="text" name="kana" id="kana" placeholder="例）ヤマダ　タロウ" required></td>
-                                </tr>
-                                <tr class="required">
-                                    <th>住所</th>
-                                    <td>
-                                        <ul class="address-inputs">
-                                            <li><span>郵便番号</span><input type="text" name="postal" id="postal" placeholder="例）123-4567"></li>
-                                            <li><input type="text" name="address" id="address" placeholder="例）新宿区西新宿2-8-1"></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr class="required">
-                                    <th>電話番号</th>
-                                    <td>
-                                        <input type="tel" name="tel" id="tel" placeholder="例）123-456-7890" required>
-                                        <div class="time-preference">
-                                            <p>電話連絡が可能な時間帯</p>
-                                            <ul class="radio-list">
-                                                <li>
-                                                    <label><input type="radio" name="time" value="anytime" checked><span class="radio-text">いつでも可</span></label>
-                                                </li>
-                                                <li>
-                                                    <label><input type="radio" name="time" value="specified"><span class="radio-text">時間指定</span></label>
-                                                    <input type="text" name="time_detail" id="time_detail" placeholder="例）午前中">
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="required">
-                                    <th>メールアドレス</th>
-                                    <td><input type="email" name="email" id="email" placeholder="例）sample@l-care.jp" required></td>
-                                </tr>
-                                <tr class="required">
-                                    <th>お問い合わせ<br>内容</th>
-                                    <td><textarea name="message" id="message" rows="7" placeholder="お問い合わせ内容をご記入ください。" required></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="form-group">
+                        <label for="kana">ふりがな<span class="required">*</span></label>
+                        <input type="text" name="kana" id="kana" placeholder="例）やまだ　たろう" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">住所</label>
+                        <div class="address-fields">
+                            <div class="zipcode-field">
+                                <span>郵便番号</span>
+                                <input type="text" name="zipcode" id="zipcode" placeholder="例）123-4567">
+                            </div>
+                            <input type="text" name="address" id="address" placeholder="例）新宿区西新宿2-8-1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tel">電話番号<span class="required">*</span></label>
+                        <input type="tel" name="tel" id="tel" placeholder="例）03-1234-5678" required>
                         
-                        <p class="privacy-lead">お問合せをいただく前に、下記の「個人情報の取り扱いについて」をお読みいただき、<br class="pc-only">ご同意いただける場合は「同意する」にチェックして、「確認する」へお進みください。</p>
-                        
-                        <div class="privacy-box">
-                            <h4 class="policy-title">個人情報保護方針（プライバシーポリシー）</h4>
+                        <div class="time-preference">
+                            <p>電話対応可能時間</p>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" name="call-time" id="anytime" value="anytime" checked>
+                                    <label for="anytime">いつでも</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="call-time" id="specific-time" value="specific-time">
+                                    <label for="specific-time">時間指定</label>
+                                    <input type="text" name="specific-time-detail" id="specific-time-detail" placeholder="例）午前中" class="time-detail">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">メールアドレス<span class="required">*</span></label>
+                        <input type="email" name="email" id="email" placeholder="例）sample@l-care.jp" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容<span class="required">*</span></label>
+                        <textarea name="message" id="message" rows="7" placeholder="お問い合わせ内容をご記入ください。" required></textarea>
+                    </div>
+                    
+                    <!-- プライバシーポリシー -->
+                    <div class="privacy-policy">
+                        <p>個人情報の取り扱いについて</p>
+                        <div class="privacy-content">
+                            <p class="policy-title">個人情報保護方針（プライバシーポリシー）</p>
                             <p>REMONY for you（以下、「当サービス」といいます）は、お客様の個人情報保護の重要性を認識し、以下のプライバシーポリシーに基づき個人情報の適切な取り扱いと保護に努めます。</p>
-                            <p><strong>1. 収集する個人情報</strong><br>
-                            当サービスでは、サービス提供のために以下の個人情報を収集することがあります。</p>
+                            
+                            <p><strong>1. 収集する個人情報</strong></p>
+                            <p>当サービスでは、サービス提供のために以下の個人情報を収集することがあります。</p>
                             <ul>
                                 <li>氏名</li>
                                 <li>住所</li>
                                 <li>電話番号</li>
                                 <li>メールアドレス</li>
                             </ul>
-                            <p><strong>2. 個人情報の利用目的</strong><br>
-                            収集した個人情報は、以下の目的で利用いたします。</p>
+                            
+                            <p><strong>2. 個人情報の利用目的</strong></p>
+                            <p>収集した個人情報は、以下の目的で利用いたします。</p>
                             <ul>
                                 <li>サービスの提供・運営</li>
                                 <li>お客様からのお問い合わせへの対応</li>
@@ -261,8 +272,9 @@
                                 <li>利用状況の分析・統計情報の作成（個人を特定しない形式）</li>
                                 <li>法令等に基づく場合</li>
                             </ul>
-                            <p><strong>3. 個人情報の第三者提供</strong><br>
-                            当サービスは、以下の場合を除き、お客様の個人情報を第三者に提供いたしません。</p>
+                            
+                            <p><strong>3. 個人情報の第三者提供</strong></p>
+                            <p>当サービスは、以下の場合を除き、お客様の個人情報を第三者に提供いたしません。</p>
                             <ul>
                                 <li>お客様の同意がある場合</li>
                                 <li>法令に基づく場合</li>
@@ -270,26 +282,75 @@
                                 <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合</li>
                                 <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li>
                             </ul>
-                            <p><strong>4. 個人情報の安全管理</strong><br>
-                            当サービスは、個人情報の漏洩、滅失またはき損を防止するため、適切なセキュリティ対策を実施します。また、個人情報を取り扱う従業者に対して、個人情報保護に関する教育・啓発活動を実施します。</p>
-                            <p><strong>5. 個人情報の開示・訂正・利用停止等</strong><br>
-                            お客様ご自身の個人情報の開示・訂正・追加・削除・利用停止をご希望の場合は、お問い合わせフォームよりご連絡ください。ご本人確認の上、適切に対応いたします。</p>
-                            <p><strong>6. Cookieの使用について</strong><br>
-                            当サービスでは、お客様の利便性向上のためにCookieを使用することがあります。Cookieの使用を望まない場合は、ブラウザの設定によりCookieを無効にすることができます。ただし、一部の機能が利用できなくなる可能性があります。</p>
-                            <p><strong>7. プライバシーポリシーの変更</strong><br>
-                            当サービスは、必要に応じて本プライバシーポリシーを変更することがあります。変更した場合は、当サイト上でお知らせいたします。</p>
+                            
+                            <p><strong>4. 個人情報の安全管理</strong></p>
+                            <p>当サービスは、個人情報の漏洩、滅失またはき損を防止するため、適切なセキュリティ対策を実施します。また、個人情報を取り扱う従業者に対して、個人情報保護に関する教育・啓発活動を実施します。</p>
+                            
+                            <p><strong>5. 個人情報の開示・訂正・利用停止等</strong></p>
+                            <p>お客様ご自身の個人情報の開示・訂正・追加・削除・利用停止をご希望の場合は、お問い合わせフォームよりご連絡ください。ご本人確認の上、適切に対応いたします。</p>
+                            
+                            <p><strong>6. Cookieの使用について</strong></p>
+                            <p>当サービスでは、お客様の利便性向上のためにCookieを使用することがあります。Cookieの使用を望まない場合は、ブラウザの設定によりCookieを無効にすることができます。ただし、一部の機能が利用できなくなる可能性があります。</p>
+                            
+                            <p><strong>7. プライバシーポリシーの変更</strong></p>
+                            <p>当サービスは、必要に応じて本プライバシーポリシーを変更することがあります。変更した場合は、当サイト上でお知らせいたします。</p>
+                            
                             <p class="policy-date">令和7年3月17日制定<br>株式会社NFES Technologies</p>
                         </div>
-                        
-                        <div class="form-actions">
-                            <p class="agree-check"><label><input type="checkbox" name="agree" id="agree" value="yes"><span class="checkbox-text">「個人情報の取り扱いについて」に<br class="sp-only">同意する</span></label></p>
-                            <div class="button-area">
-                                <input type="submit" value="確認画面へ" class="button-submit" disabled>
-                            </div>
+                        <div class="agree-check">
+                            <input type="checkbox" id="agree" name="agree" required>
+                            <label for="agree">個人情報の取り扱いに同意する</label>
                         </div>
-                    </form>
+                        <p class="privacy-note">お問い合わせをいただく前に、上記の「個人情報の取り扱いについて」をお読みいただき、<br>ご同意いただける場合は「同意する」にチェックして、「確認する」へお進みください。</p>
+                    </div>
+                    
+                    <div class="button-area">
+                        <button type="button" id="confirm-button" style="width: 200px; padding: 12px 20px; background-color: #8BAE5D; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: not-allowed; opacity: 0.65;" disabled>確認画面へ</button>
+                    </div>
                 </div>
-            </div>
+                
+                <!-- 確認セクション -->
+                <div id="confirm-section" class="form-section" style="display: none;">
+                    <h3>入力内容の確認</h3>
+                    <p>以下の内容でよろしければ「送信する」ボタンを押してください。</p>
+                    
+                    <table class="confirm-table">
+                        <tr>
+                            <th>お名前</th>
+                            <td id="confirm-name"></td>
+                        </tr>
+                        <tr>
+                            <th>ふりがな</th>
+                            <td id="confirm-kana"></td>
+                        </tr>
+                        <tr>
+                            <th>住所</th>
+                            <td id="confirm-address"></td>
+                        </tr>
+                        <tr>
+                            <th>電話番号</th>
+                            <td id="confirm-tel"></td>
+                        </tr>
+                        <tr>
+                            <th>電話対応可能時間</th>
+                            <td id="confirm-call-time"></td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td id="confirm-email"></td>
+                        </tr>
+                        <tr>
+                            <th>お問い合わせ内容</th>
+                            <td id="confirm-message"></td>
+                        </tr>
+                    </table>
+                    
+                    <div class="button-group">
+                        <button type="button" id="back-button" style="width: 180px; padding: 12px 20px; background-color: #0e3a0f; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">修正する</button>
+                        <button type="button" id="submit-button" style="width: 180px; padding: 12px 20px; background-color: #8BAE5D; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">送信する</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 
